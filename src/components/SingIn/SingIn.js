@@ -8,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { SignInAction } from 'store/actions/signin'
 
 const styles = theme => ({
     card: {
@@ -50,23 +52,27 @@ const singUp = props => <Link to="/singup" {...props} />
 
 class SingIn extends Component {
     signIn = () => {
-        fetch('http://localhost:8000/auth/token/create/', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                password: 123,
-                username: 'artem',
-            }),
-        })
-            .then(function(response) {
-                return response.json()
-            })
-            .then(answer => {
-                console.log(answer)
-            })
-            .catch(console.log)
+        // fetch('http://localhost:8000/auth/token/create/', {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         password: 123,
+        //         username: 'artem',
+        //     }),
+        // })
+        //     .then(function(response) {
+        //         return response.json()
+        //     })
+        //     .then(answer => {
+        //         console.log(answer)
+        //     })
+        //     .catch(console.log)
+        this.props.signIn()
+        setTimeout(() => {
+            console.log(this.props.token)
+        }, 2000)
     }
 
     render() {
@@ -118,4 +124,19 @@ class SingIn extends Component {
     }
 }
 
-export default withStyles(styles)(SingIn)
+export const mapStateToProps = store => {
+    return {
+        token: store.signin.token,
+    }
+}
+
+const mapDispatchToProps = {
+    signIn: () => new SignInAction().makeRequest(),
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(SingIn))
+
+// export default withStyles(styles)(SingIn)
