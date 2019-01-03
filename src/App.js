@@ -1,26 +1,32 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
+import { Container, Row, Col } from 'reactstrap'
+import SingUp from 'components/SingUp/SignUp'
+import SingIn from 'components/SingIn/SingIn'
+import { Route } from 'react-router-dom'
+
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
-                </header>
-            </div>
+            <Container fluid>
+                <Row>
+                    <Col className="main-component">
+                        <div className="overlay"/>
+
+                        <Row>
+                            <Col sm="12" md={{ size: 6, offset: 3 }}>
+                                <div className="content">
+                                    <div className="vertical-center">
+                                        <Route path="/" exact component={SingUp} />
+                                        <Route path="/singin" component={SingIn} />
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'open-iconic/font/css/open-iconic-bootstrap.css'
 import './index.css'
+
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import { store } from 'store/configureStore'
 import { ConnectedRouter } from 'connected-react-router'
 import history from './history.js'
+
 
 ReactDOM.render(
     <Provider store={store}>
