@@ -15,17 +15,14 @@ export class BaseRequestAction {
         throw new NotImplementedError()
     }
 
-    makeRequest = params => {
+    makeRequest = (URIParams = {}, requestParams = {}, data = {}, method = 'GET') => {
         return dispatch => {
-            Promise.all([dispatch(this._request(params))])
-            return httpRequest(this._getURL(params)).then(
-                (resp => {
-                    Promise.all([
-                        dispatch(this._requestSuccess(resp)),
-                    ])
-                }),
-                errorData =>
-                    console.log(errorData)
+            Promise.all([dispatch(this._request({ URIParams, requestParams, data, method }))])
+            return httpRequest(this._getURL(URIParams), method, requestParams, data).then(
+                resp => {
+                    Promise.all([dispatch(this._requestSuccess(resp))])
+                },
+                errorData => console.log(errorData)
             )
         }
     }

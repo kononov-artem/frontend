@@ -6,19 +6,6 @@ export class HttpError extends Error {
     }
 }
 
-function getCookie(cookie_name) {
-    const name = `${cookie_name}=`
-    const cookies = document.cookie.split(';')
-
-    for (let cookie of cookies) {
-        cookie = cookie.trim()
-        if (cookie.startsWith(name)) {
-            return cookie.substring(name.length)
-        }
-    }
-    return undefined
-}
-
 export function getURlParams(params = {}) {
     let parts = []
     for (let key in params) {
@@ -38,15 +25,10 @@ export function getURlParams(params = {}) {
 }
 
 export function httpRequest(url, method = 'POST', params = {}, data = {}) {
-    const contentType = 'application/json'
     let headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     }
-    // const csrfTokenCookie = getCookie('csrftoken')
-    // if (csrfTokenCookie) {
-    //     headers['X-CSRFToken'] = csrfTokenCookie
-    // }
-    // console.log(url)
+
     let finalUrl = url
     let getParams = getURlParams(params)
     if (getParams) {
@@ -55,14 +37,10 @@ export function httpRequest(url, method = 'POST', params = {}, data = {}) {
 
     const requestParams = {
         method,
-        // credentials: 'same-origin',
         headers,
     }
     if (method !== 'GET') {
-        requestParams.body = JSON.stringify({
-            password: 123,
-            username: 'artem',
-        })
+        requestParams.body = JSON.stringify(data)
     }
 
     return fetcher(finalUrl, requestParams)

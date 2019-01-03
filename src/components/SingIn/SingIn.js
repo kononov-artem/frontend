@@ -52,27 +52,26 @@ const singUp = props => <Link to="/singup" {...props} />
 
 class SingIn extends Component {
     signIn = () => {
-        // fetch('http://localhost:8000/auth/token/create/', {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         password: 123,
-        //         username: 'artem',
-        //     }),
-        // })
-        //     .then(function(response) {
-        //         return response.json()
-        //     })
-        //     .then(answer => {
-        //         console.log(answer)
-        //     })
-        //     .catch(console.log)
-        this.props.signIn()
+        let data = {
+            password: this.state.password,
+            username: this.state.login,
+        }
+        this.props.signIn(data)
         setTimeout(() => {
             console.log(this.props.token)
         }, 2000)
+    }
+
+    loginHandler = event => {
+        this.setState({
+            login: event.target.value,
+        })
+    }
+
+    passwordHandler = event => {
+        this.setState({
+            password: event.target.value,
+        })
     }
 
     render() {
@@ -94,6 +93,7 @@ class SingIn extends Component {
                         >
                             <Col xs="6">
                                 <Input
+                                    onChange={this.loginHandler}
                                     placeholder="Login"
                                     inputProps={{
                                         'aria-label': 'Description',
@@ -102,6 +102,7 @@ class SingIn extends Component {
                             </Col>
                             <Col xs="6">
                                 <Input
+                                    onChange={this.passwordHandler}
                                     placeholder="Password"
                                     inputProps={{
                                         'aria-label': 'Description',
@@ -131,12 +132,10 @@ export const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = {
-    signIn: () => new SignInAction().makeRequest(),
+    signIn: data => new SignInAction().makeRequest({}, {}, data, 'POST'),
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(withStyles(styles)(SingIn))
-
-// export default withStyles(styles)(SingIn)
