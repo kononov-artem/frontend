@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 
-const styles = {
+const styles = theme => ({
     card: {
         minWidth: 275,
         backgroundColor: '#FFFFFF',
@@ -25,7 +25,16 @@ const styles = {
     pos: {
         marginBottom: 12,
     },
-}
+    button: {
+        margin: theme.spacing.unit,
+        '&:hover': {
+            outline: '0 !important'
+        },
+        '&:focus': {
+            outline: '0 !important'
+        }
+    },
+})
 
 class SingIn extends Component {
     render() {
@@ -77,7 +86,10 @@ class SingIn extends Component {
                         </Row>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Sign in</Button>
+                        <Button className={classes.button}>Sign in</Button>
+                        <Button className={classes.button} >
+                            Link
+                        </Button>
                     </CardActions>
                 </Card>
             </Container>

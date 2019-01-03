@@ -5,28 +5,20 @@ import SingUp from 'components/SingUp/SignUp'
 import SingIn from 'components/SingIn/SingIn'
 import { Route } from 'react-router-dom'
 
-
 class App extends Component {
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col className="main-component">
-                        <div className="overlay"/>
-
-                        <Row>
-                            <Col sm="12" md={{ size: 6, offset: 3 }}>
-                                <div className="content">
-                                    <div className="vertical-center">
-                                        <Route path="/" exact component={SingUp} />
-                                        <Route path="/singin" component={SingIn} />
-                                    </div>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
+            <div
+                style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                }}
+            >
+                <Route path="/" exact component={SingIn} />
+                <Route path="/singup" component={SingUp} />
+            </div>
         )
     }
 }
