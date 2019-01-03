@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { SignInAction } from 'store/actions/signin'
 
@@ -51,15 +51,16 @@ const styles = theme => ({
 const singUp = props => <Link to="/singup" {...props} />
 
 class SingIn extends Component {
+    state = {
+        isLoggedIn: false,
+    }
+
     signIn = () => {
         let data = {
             password: this.state.password,
             username: this.state.login,
         }
         this.props.signIn(data)
-        setTimeout(() => {
-            console.log(this.props.token)
-        }, 2000)
     }
 
     loginHandler = event => {
@@ -74,11 +75,25 @@ class SingIn extends Component {
         })
     }
 
+    componentWillMount() {
+        if (localStorage.getItem('token')) {
+            this.setState({ isLoggedIn: true })
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.token !== nextProps.token) {
+            localStorage.setItem('token', nextProps.token)
+            this.setState({ isLoggedIn: true })
+        }
+    }
+
     render() {
         const { classes } = this.props
 
         return (
             <Container fluid>
+                {this.state.isLoggedIn ? <Redirect to="/" /> : null}
                 <Row>
                     <Col sm="12" md={{ size: 6, offset: 3 }}>
                         <Card className={classes.titleBlock}>Sign In</Card>

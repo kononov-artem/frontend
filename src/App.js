@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Container, Row, Col } from 'reactstrap'
 import SingUp from 'components/SingUp/SignUp'
 import SingIn from 'components/SingIn/SingIn'
-import { Route } from 'react-router-dom'
+import Main from 'components/Main/Main'
+import Logout from 'components/Logout/Logout'
+import { Route, Switch } from 'react-router-dom'
+import connect from 'react-redux/es/connect/connect'
 
 class App extends Component {
     render() {
@@ -12,15 +14,30 @@ class App extends Component {
                 style={{
                     position: 'absolute',
                     left: '50%',
-                    top: '50%',
+                    top: '45%',
                     transform: 'translate(-50%, -50%)',
                 }}
             >
-                <Route path="/" exact component={SingIn} />
-                <Route path="/singup" component={SingUp} />
+                <Switch>
+                    <Route path="/signin" exact component={SingIn} />
+                    <Route path="/singup" component={SingUp} />
+                    <Route path="/logout" component={Logout} />
+                    <Route path="/" component={Main} />
+                </Switch>
             </div>
         )
     }
 }
 
-export default App
+export const mapStateToProps = store => {
+    return {
+        token: store.signin.token || null,
+    }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App)
