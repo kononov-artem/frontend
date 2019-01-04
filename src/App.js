@@ -14,7 +14,7 @@ class App extends Component {
                 style={{
                     position: 'absolute',
                     left: '50%',
-                    top: '45%',
+                    top: '50%',
                     transform: 'translate(-50%, -50%)',
                 }}
             >
