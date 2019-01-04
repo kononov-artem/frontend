@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './Home.css'
-import { Container, Row, Col } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import MenuAppBar from 'components/AppBar/AppBar'
+import CardWithContent from 'components/CardWithContent/CardWithContent'
+
 
 class Home extends Component {
     render() {
@@ -12,6 +14,7 @@ class Home extends Component {
                         <MenuAppBar />
                     </Col>
                     <Col md={{ size: 12, offset: 0 }}>
+                        <CardWithContent/>
                     </Col>
                 </Row>
             </div>
