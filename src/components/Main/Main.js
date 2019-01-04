@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import connect from 'react-redux/es/connect/connect'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import Home from 'components/Home/Home'
 
 class Main extends Component {
     isLoggedIn() {
@@ -9,8 +10,10 @@ class Main extends Component {
 
     render() {
         return (
-            <div style={{ color: 'red' }}>
-                123
+            <div>
+                <Switch>
+                    <Route path="/" component={Home} />
+                </Switch>
                 {!this.isLoggedIn() ? <Redirect to="/signin" /> : null}
             </div>
         )

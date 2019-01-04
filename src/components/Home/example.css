@@ -1,0 +1,177 @@
+/*<div className="letters">*/
+    /*<span className="test-animate" id="w">W</span>*/
+    /*<span className="test-animate" id="o">o</span>*/
+    /*<span className="test-animate" id="r">r</span>*/
+    /*<span className="test-animate" id="d">d</span>*/
+/*</div>*/
+/*<div className="letters">*/
+    /*<span className="test-animate_2" id="char">W</span>*/
+/*</div>*/
+
+
+/*.test-animate {*/
+    /*display: inline-block;*/
+    /*position: relative;*/
+    /*font-size: 120px;*/
+    /*top: -60px;*/
+/*}*/
+
+/*#w {*/
+    /*text-shadow: 0 0 10px #FF0000;*/
+/*}*/
+
+/*#w:before {*/
+    /*content: 'W';*/
+    /*animation: animLetterW 5s linear forwards;*/
+/*}*/
+
+/*#o:before {*/
+    /*content: 'o';*/
+    /*animation: animLetterO 5s linear forwards;*/
+/*}*/
+
+/*#r:before {*/
+    /*content: 'r';*/
+    /*animation: animLetterR 5s linear forwards;*/
+/*}*/
+
+/*#d:before {*/
+    /*content: 'd';*/
+    /*animation: animLetterD 5s linear forwards;*/
+/*}*/
+
+/*@keyframes animChar {*/
+    /*0% {*/
+        /*transform: rotate(0);*/
+    /*}*/
+    /*100% {*/
+        /*transform: rotate(-155deg);*/
+    /*}*/
+/*}*/
+
+/*@keyframes animLetterW {*/
+    /*0% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*14% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*28% {*/
+        /*transform: translateY(-50px) translateX(-50px) rotate(35deg);*/
+    /*}*/
+    /*42% {*/
+        /*transform: translateY(-100px) translateX(50px) rotate(15deg);*/
+    /*}*/
+    /*56% {*/
+        /*transform: translateY(50px) translateX(-50px) rotate(-15deg);*/
+    /*}*/
+    /*68% {*/
+        /*transform: translateY(100px) translateX(50px) rotate(-155deg);*/
+    /*}*/
+    /*80% {*/
+        /*transform: translateY(-50px) translateX(150px) rotate(55deg);*/
+    /*}*/
+    /*100% {*/
+        /*transform: translateY(0) rotate(0);*/
+    /*}*/
+/*}*/
+
+/*@keyframes animLetterO {*/
+    /*0% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*3% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*10% {*/
+        /*transform: translateY(-100px) translateX(50px) rotate(15deg);*/
+    /*}*/
+    /*20% {*/
+        /*transform: translateY(-50px) translateX(-50px) rotate(35deg);*/
+    /*}*/
+    /*40% {*/
+        /*transform: translateY(-50px) translateX(150px) rotate(55deg);*/
+    /*}*/
+    /*60% {*/
+        /*transform: translateY(10px) translateX(50px) rotate(-1deg);*/
+    /*}*/
+    /*80% {*/
+        /*transform: translateY(50px) translateX(-50px) rotate(-15deg);*/
+    /*}*/
+    /*100% {*/
+        /*transform: translateY(0) rotate(0);*/
+    /*}*/
+/*}*/
+
+/*@keyframes animLetterR {*/
+    /*0% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*14% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*20% {*/
+        /*transform: translateY(50px) translateX(-50px) rotate(-15deg);*/
+    /*}*/
+    /*34% {*/
+        /*transform: translateY(10px) translateX(50px) rotate(-1deg);*/
+    /*}*/
+    /*48% {*/
+        /*transform: translateY(-150px) translateX(150px) rotate(55deg);*/
+    /*}*/
+    /*62% {*/
+        /*transform: translateY(-50px) translateX(-50px) rotate(95deg);*/
+    /*}*/
+    /*78% {*/
+        /*transform: translateY(-100px) translateX(50px) rotate(15deg);*/
+    /*}*/
+    /*100% {*/
+        /*transform: translateY(0) rotate(0);*/
+    /*}*/
+/*}*/
+
+/*@keyframes animLetterD {*/
+    /*0% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*5% {*/
+        /*transform: translateY(0) translateX(0) rotate(0);*/
+    /*}*/
+    /*10% {*/
+        /*transform: translateY(-50px) translateX(-50px) rotate(15deg);*/
+    /*}*/
+    /*20% {*/
+        /*transform: translateY(100px) translateX(0px) rotate(-100deg);*/
+    /*}*/
+    /*40% {*/
+        /*transform: translateY(-15px) translateX(200px) rotate(135deg);*/
+    /*}*/
+    /*60% {*/
+        /*transform: translateY(-50px) translateX(-150px) rotate(95deg);*/
+    /*}*/
+    /*80% {*/
+        /*transform: translateY(100px) translateX(-69px) rotate(15deg);*/
+    /*}*/
+    /*100% {*/
+        /*transform: translateY(0) rotate(0);*/
+    /*}*/
+/*}*/
+
+
+
+
+/*#char {*/
+    /*font-size: 120px;*/
+/*}*/
+
+/*#char:before {*/
+    /*content: 'W';*/
+    /*animation: animChar 5s linear forwards;*/
+    /*position: absolute;*/
+/*}*/
+
+/*.test-animate:before {*/
+    /*position: absolute;*/
+    /*color: #F48024;*/
+/*}*/
+
