@@ -43,7 +43,7 @@ class RecipeReviewCard extends Component {
                         <Typography variant="h6">{this.props.title}</Typography>
                         <Typography component="p">{this.props.description}</Typography>
                     </CardContent>
-                    {this.state.isRedirect ? <Redirect to={this.props.redirectTo} /> : null}
+                    {this.state.isRedirect ? <Redirect push to={this.props.redirectTo} /> : null}
                 </Card>
             </CardActionArea>
         )
