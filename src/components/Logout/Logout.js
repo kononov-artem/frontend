@@ -11,7 +11,7 @@ class Logout extends Component {
         return <Redirect to="/" />
     }
 }
-
+//TODO: переделать т.к. рендеринг приводит к куче редиректов
 export const mapStateToProps = store => {
     return {
         token: store.signin.token || null,
