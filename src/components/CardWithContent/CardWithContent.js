@@ -12,10 +12,14 @@ import { Redirect } from 'react-router-dom'
 const styles = theme => ({
     card: {
         maxWidth: 400,
+        margin: 50,
     },
     media: {
         height: 0,
         paddingTop: '56.25%',
+    },
+    content: {
+        backgroundColor: '#cccccc',
     },
 })
 
@@ -32,14 +36,14 @@ class RecipeReviewCard extends Component {
         const { classes } = this.props
 
         return (
-            <CardActionArea onClick={this.handleCardClick}>
-                <Card className={classes.card}>
+            <CardActionArea className={classes.card} onClick={this.handleCardClick}>
+                <Card>
                     <CardMedia className={classes.media} image={image} title="" />
-                    <CardContent>
-                        <Typography variant="h6">Title</Typography>
-                        <Typography component="p">Description</Typography>
+                    <CardContent className={classes.content}>
+                        <Typography variant="h6">{this.props.title}</Typography>
+                        <Typography component="p">{this.props.description}</Typography>
                     </CardContent>
-                    { this.state.isRedirect ? <Redirect to="/test" /> : null }
+                    {this.state.isRedirect ? <Redirect to={this.props.redirectTo} /> : null}
                 </Card>
             </CardActionArea>
         )
@@ -48,6 +52,9 @@ class RecipeReviewCard extends Component {
 
 RecipeReviewCard.propTypes = {
     classes: PropTypes.object.isRequired,
+    redirectTo: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
 }
 
 export default withStyles(styles)(RecipeReviewCard)
