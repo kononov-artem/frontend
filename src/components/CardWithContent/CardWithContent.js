@@ -12,7 +12,8 @@ import { Redirect } from 'react-router-dom'
 const styles = theme => ({
     card: {
         maxWidth: 400,
-        margin: 50,
+        minWidth: 400,
+        margin: 0,
     },
     media: {
         height: 0,
