@@ -41,7 +41,7 @@ class App extends Component {
                         <Route path="/signin" component={SingIn} />
                         <Route path="/singup" component={SingUp} />
                         <Route path="/logout" component={Logout} />
-                        <Route path="/" exact component={Main} />
+                        <Route path="/" component={Main} />
                     </Switch>
                 </div>
 
