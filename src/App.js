@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom'
 import { Row, Col, Container } from 'reactstrap'
 import MenuAppBar from 'components/AppBar/AppBar'
 import SimpleBottomNavigation from 'components/SimpleBottomNavigation/SimpleBottomNavigation'
+import * as urls from './urls'
 
 class App extends Component {
     render() {
@@ -38,10 +39,10 @@ class App extends Component {
                     }}
                 >
                     <Switch>
-                        <Route path="/signin" component={SingIn} />
-                        <Route path="/singup" component={SingUp} />
-                        <Route path="/logout" component={Logout} />
-                        <Route path="/" component={Main} />
+                        <Route path={urls.SINGIN} component={SingIn} />
+                        <Route path={urls.SINGUP} component={SingUp} />
+                        <Route path={urls.LOGOUT} component={Logout} />
+                        <Route path={urls.HOME} component={Main} />
                     </Switch>
                 </div>
 

@@ -5,7 +5,6 @@ import { Row, Col } from 'reactstrap'
 class Dictionaries extends Component {
 
     render() {
-        console.log('qwe')
         return (
             <Row>
                 <Col>

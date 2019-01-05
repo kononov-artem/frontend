@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Home.css'
 import { Row, Col } from 'reactstrap'
 import CardWithContent from 'components/CardWithContent/CardWithContent'
+import * as urls from '../../urls'
+
 
 // <div
 //     style={{
@@ -41,7 +43,7 @@ class Home extends Component {
                                         }}
                                     >
                                         <CardWithContent
-                                            redirectTo="/test"
+                                            redirectTo={urls.TEST}
                                             title="Test"
                                             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quasi."
                                         />
@@ -64,7 +66,7 @@ class Home extends Component {
                                         }}
                                     >
                                         <CardWithContent
-                                            redirectTo="/constructor"
+                                            redirectTo={urls.CONSTRUCTOR}
                                             title="Constructor"
                                             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quasi."
                                         />
@@ -92,7 +94,7 @@ class Home extends Component {
                                         }}
                                     >
                                         <CardWithContent
-                                            redirectTo="/sprint"
+                                            redirectTo={urls.SPRINT}
                                             title="Sprint"
                                             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quasi."
                                         />
@@ -115,7 +117,7 @@ class Home extends Component {
                                         }}
                                     >
                                         <CardWithContent
-                                            redirectTo="/translate"
+                                            redirectTo={urls.TRANSLATE}
                                             title="Translate"
                                             description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quasi."
                                         />
