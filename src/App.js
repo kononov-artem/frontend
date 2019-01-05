@@ -12,47 +12,54 @@ import SimpleBottomNavigation from 'components/SimpleBottomNavigation/SimpleBott
 class App extends Component {
     render() {
         return (
-            //<div
-            //    style={{
-            //        position: 'absolute',
-            //        left: '50%',
-            //        top: '50%',
-            //        transform: 'translate(-50%, -50%)',
-            //    }}
-            //>
-            //
-            //</div>
             <Container fluid>
-                <Row>
-                    <Col>
-                        <Row style={{
-                            backgroundColor: '#37434f',
-                        }}>
-                            <Col md={{ size: 12, offset: 0 }} style={{
-                                padding: 0,
-                            }}>
-                                <MenuAppBar />
-                            </Col>
-                        </Row>
+                <Row
+                    style={{
+                        backgroundColor: '#37434f',
+                    }}
+                >
+                    <Col
+                        md={{ size: 12, offset: 0 }}
+                        style={{
+                            padding: 0,
+                            position: 'fixed',
+                            top: 0,
+                            zIndex: 1,
+                        }}
+                    >
+                        <MenuAppBar />
+                    </Col>
+                </Row>
 
-                        <Switch>
-                            <Route path="/signin" component={SingIn} />
-                            <Route path="/singup" component={SingUp} />
-                            <Route path="/logout" component={Logout} />
-                            <Route path="/" exact component={Main} />
-                        </Switch>
+                <div
+                    style={{
+                        paddingTop: 70,
+                        paddingBottom: 70,
+                    }}
+                >
+                    <Switch>
+                        <Route path="/signin" component={SingIn} />
+                        <Route path="/singup" component={SingUp} />
+                        <Route path="/logout" component={Logout} />
+                        <Route path="/" exact component={Main} />
+                    </Switch>
+                </div>
 
-                        <Row style={{
-                            backgroundColor: '#37434f',
-                        }}>
-                            <Col md={{ size: 12, offset: 0 }} style={{
-                                position: 'fixed',
-                                bottom: 0,
-                                padding: 0,
-                            }}>
-                                <SimpleBottomNavigation/>
-                            </Col>
-                        </Row>
+                <Row
+                    style={{
+                        backgroundColor: '#37434f',
+                    }}
+                >
+                    <Col
+                        md={{ size: 12, offset: 0 }}
+                        style={{
+                            position: 'fixed',
+                            bottom: 0,
+                            padding: 0,
+                            zIndex: 1,
+                        }}
+                    >
+                        <SimpleBottomNavigation />
                     </Col>
                 </Row>
             </Container>
