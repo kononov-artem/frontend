@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import Home from 'components/Home/Home'
+import Test from 'components/Test/Test'
 import Dictionaries from 'components/Dictionaries/Dictionaries'
 import { Row, Col } from 'reactstrap'
 import * as urls from '../../urls'
@@ -17,6 +18,7 @@ class Main extends Component {
             <Row>
                 <Col>
                     <Switch>
+                        <Route path={urls.TEST} component={Test} />
                         <Route path={urls.DICTIONARIES} component={Dictionaries} />
                         <Route path={urls.HOME} exact component={Home} />
                     </Switch>

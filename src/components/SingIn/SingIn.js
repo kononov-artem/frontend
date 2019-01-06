@@ -83,7 +83,7 @@ class SingIn extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.token !== nextProps.token) {
-            localStorage.setItem('token', nextProps.token)
+            localStorage.setItem('token', nextProps.token.auth_token)
             this.setState({ isLoggedIn: true })
         }
     }

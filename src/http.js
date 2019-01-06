@@ -25,8 +25,12 @@ export function getURlParams(params = {}) {
 }
 
 export function httpRequest(url, method = 'POST', params = {}, data = {}) {
+    let token = localStorage.getItem('token')
     let headers = {
         'Content-Type': 'application/json',
+    }
+    if (token) {
+        headers['Authorization'] = `Token ${token}`
     }
 
     let finalUrl = url
@@ -67,7 +71,7 @@ async function processFetchResponse(resp, url, requestParams) {
     }
     if (resp.status === 401) {
         const currentLocation = window.location.href
-        window.location = '/auth/ga-redirect/?next=' + currentLocation
+        // window.location = '' + currentLocation
     } else if (resp.status >= 400 && resp.status < 500) {
         errorMessage = await resp.text()
     } else if (resp.status >= 500) {
