@@ -67,7 +67,7 @@ class ListOfDictionaries extends React.Component {
                         onClick={this.handleToggle(index)}
                     >
                         <Checkbox
-                            checked={this.state.checked.indexOf(index) !== -1}
+                            checked={value.is_active}
                             tabIndex={-1}
                             disableRipple
                         />
