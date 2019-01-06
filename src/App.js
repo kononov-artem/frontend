@@ -32,19 +32,21 @@ class App extends Component {
                     </Col>
                 </Row>
 
-                <div
-                    style={{
-                        paddingTop: 70,
-                        paddingBottom: 70,
-                    }}
-                >
-                    <Switch>
-                        <Route path={urls.SINGIN} component={SingIn} />
-                        <Route path={urls.SINGUP} component={SingUp} />
-                        <Route path={urls.LOGOUT} component={Logout} />
-                        <Route path={urls.HOME} component={Main} />
-                    </Switch>
-                </div>
+                <Row>
+                    <Col
+                        style={{
+                            paddingTop: 70,
+                            paddingBottom: 70,
+                        }}
+                    >
+                        <Switch>
+                            <Route path={urls.SINGIN} component={SingIn} />
+                            <Route path={urls.SINGUP} component={SingUp} />
+                            <Route path={urls.LOGOUT} component={Logout} />
+                            <Route path={urls.HOME} component={Main} />
+                        </Switch>
+                    </Col>
+                </Row>
 
                 <Row
                     style={{

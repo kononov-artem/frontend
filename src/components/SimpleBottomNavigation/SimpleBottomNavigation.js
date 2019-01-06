@@ -39,7 +39,7 @@ class SimpleBottomNavigation extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps !== this.props.pathname) {
+        if (nextProps.pathname !== this.props.pathname) {
             this.isRedirect = false
             let value = this.getKeyByValue(redirectValue, nextProps.pathname)
             value = parseInt(value)
