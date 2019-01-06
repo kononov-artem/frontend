@@ -8,6 +8,9 @@ import BookIcon from '@material-ui/icons/Book'
 import SettingsIcon from '@material-ui/icons/Settings'
 import HomeIcon from '@material-ui/icons/Home'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as urls from '../../urls'
+
 
 const styles = {
     root: {
@@ -15,10 +18,10 @@ const styles = {
     },
 }
 const redirectValue = {
-    0: '/',
-    1: '/dictionaries',
-    2: '/achievements',
-    3: '/settings',
+    0: urls.HOME,
+    1: urls.DICTIONARIES,
+    2: urls.ACHIVEMENTS,
+    3: urls.SETTINGS,
 }
 
 class SimpleBottomNavigation extends React.Component {
@@ -28,11 +31,22 @@ class SimpleBottomNavigation extends React.Component {
     }
 
     state = {
-        value: 0,
+        value: parseInt(this.getKeyByValue(redirectValue, this.props.pathname)),
     }
 
-    componentWillMount() {
-        this.isRedirect = false
+    getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps !== this.props.pathname) {
+            this.isRedirect = false
+            let value = this.getKeyByValue(redirectValue, nextProps.pathname)
+            value = parseInt(value)
+            this.setState({
+                value: value,
+            })
+        }
     }
 
     renderRedirect = () => {
@@ -75,4 +89,15 @@ SimpleBottomNavigation.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(SimpleBottomNavigation)
+const mapStateToProps = store => {
+    return {
+        pathname: store.router.location.pathname,
+    }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(SimpleBottomNavigation))
