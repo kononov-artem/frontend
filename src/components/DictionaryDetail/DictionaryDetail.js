@@ -46,6 +46,27 @@ class DictionaryDetail extends Component {
         })
     }
 
+    handlerDeleteWords = (item) => {
+        console.log(item)
+    }
+
+    renderWords = () => {
+        if (this.state.dictionary.translate) {
+            let words = this.state.dictionary.translate.map((item, index) => {
+                return (
+                    <div key={index}>
+                        <span>{item.word} </span>
+                        <span>{item.translate}</span>
+                        <IconButton onClick={() => this.handlerDeleteWords(item.id)}>
+                            <HighlightOffIcon />
+                        </IconButton>
+                    </div>
+                )
+            })
+            return words
+        }
+    }
+
     renderName = () => {
         if (this.state.isNameEdit) {
             return (
@@ -84,10 +105,11 @@ class DictionaryDetail extends Component {
                 <Col md={{ size: 8, offset: 2 }}>
                     <div
                         style={{
-                            backgroundColor: 'red',
+                            backgroundColor: 'white',
                         }}
                     >
                         {this.renderName()}
+                        {this.renderWords()}
                     </div>
                 </Col>
             </Row>
