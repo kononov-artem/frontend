@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import { connect } from 'react-redux'
 import { GetDictionaryDetailAction } from 'store/actions/dictionaryDetail'
-
+import TextField from '@material-ui/core/TextField'
 
 class DictionaryDetail extends Component {
     constructor(props) {
@@ -11,7 +11,8 @@ class DictionaryDetail extends Component {
     }
 
     state = {
-        dictionary: {}
+        dictionary: {},
+        isNameEdit: false,
     }
 
     componentWillReceiveProps(nextProps) {
@@ -22,17 +23,43 @@ class DictionaryDetail extends Component {
         }
     }
 
+    handleClickOnName = () => {
+        this.setState({ isNameEdit: true })
+    }
+
+    renderName = () => {
+        if (this.state.isNameEdit) {
+            return (
+                <TextField
+                    id="standard-name"
+                    label="Name"
+                    // className={classes.textField}
+                    value={this.state.dictionary.name}
+                    // onChange={this.handleChange('name')}
+                    margin="normal"
+                />
+            )
+        }
+        return this.state.dictionary.name
+    }
+
     render() {
         return (
             <Row>
-                <Col>
-                    {String(this.state.dictionary.name)}
+                <Col md={{ size: 8, offset: 2 }}>
+                    <div
+                        style={{
+                            backgroundColor: 'red',
+                        }}
+                        onClick={this.handleClickOnName}
+                    >
+                        {this.renderName()}
+                    </div>
                 </Col>
             </Row>
         )
     }
 }
-
 
 const mapStateToProps = store => {
     return {
@@ -41,11 +68,10 @@ const mapStateToProps = store => {
 }
 
 const mapDispatchToProps = {
-    getDictionary: (id) => new GetDictionaryDetailAction().makeRequest({id: id}, {}, {}, 'GET'),
+    getDictionary: id => new GetDictionaryDetailAction().makeRequest({ id: id }, {}, {}, 'GET'),
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(DictionaryDetail)
-
