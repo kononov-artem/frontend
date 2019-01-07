@@ -7,11 +7,13 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
-import CommentIcon from '@material-ui/icons/Comment'
+import EditIcon from '@material-ui/icons/Edit'
 import { connect } from 'react-redux'
 import { GetDictionariesAction } from 'store/actions/dictionaries'
 import { httpRequest } from '../../http'
 import { API_URL } from '../../constants'
+import { Link } from 'react-router-dom'
+import * as urls from '../../urls'
 
 const styles = theme => ({
     root: {
@@ -40,7 +42,7 @@ class ListOfDictionaries extends React.Component {
             data: [
                 {
                     id: dictionary_id,
-                    is_active: this.state.checked.indexOf(index) === -1
+                    is_active: this.state.checked.indexOf(index) === -1,
                 },
             ],
         }
@@ -64,6 +66,7 @@ class ListOfDictionaries extends React.Component {
     }
 
     arr_diff(a1, a2) {
+        //TODO: вынести в спомогающие функции
         var a = [],
             diff = []
 
@@ -102,6 +105,11 @@ class ListOfDictionaries extends React.Component {
         }
     }
 
+    renderLink = index => {
+        let id = this.state.dictionaries[index].id
+        return props => <Link to={`${urls.DICTIONARY_DETAIL}/${id}`} {...props} />
+    }
+
     render() {
         const { classes } = this.props
 
@@ -122,8 +130,8 @@ class ListOfDictionaries extends React.Component {
                         />
                         <ListItemText primary={`${value.name}`} />
                         <ListItemSecondaryAction>
-                            <IconButton aria-label="Comments">
-                                <CommentIcon />
+                            <IconButton component={this.renderLink(index)} aria-label="Edit">
+                                <EditIcon />
                             </IconButton>
                         </ListItemSecondaryAction>
                     </ListItem>

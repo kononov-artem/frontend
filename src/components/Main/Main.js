@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import Home from 'components/Home/Home'
 import Test from 'components/Test/Test'
+import DictionaryDetail from 'components/DictionaryDetail/DictionaryDetail'
 import Dictionaries from 'components/Dictionaries/Dictionaries'
 import { Row, Col } from 'reactstrap'
 import * as urls from '../../urls'
-
 
 class Main extends Component {
     isLoggedIn() {
@@ -20,6 +20,10 @@ class Main extends Component {
                     <Switch>
                         <Route path={urls.TEST} component={Test} />
                         <Route path={urls.DICTIONARIES} component={Dictionaries} />
+                        <Route
+                            path={`${urls.DICTIONARY_DETAIL}/:dictionary_id`}
+                            component={DictionaryDetail}
+                        />
                         <Route path={urls.HOME} exact component={Home} />
                     </Switch>
                     {!this.isLoggedIn() ? <Redirect to={urls.LOGOUT} /> : null}
