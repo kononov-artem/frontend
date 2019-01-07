@@ -3,6 +3,10 @@ import { Row, Col } from 'reactstrap'
 import { connect } from 'react-redux'
 import { GetDictionaryDetailAction } from 'store/actions/dictionaryDetail'
 import TextField from '@material-ui/core/TextField'
+import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
+import CheckIcon from '@material-ui/icons/Check'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
 class DictionaryDetail extends Component {
     constructor(props) {
@@ -27,20 +31,51 @@ class DictionaryDetail extends Component {
         this.setState({ isNameEdit: true })
     }
 
+    handlerFocusOut = () => {
+        this.setState({ isNameEdit: false })
+    }
+
+    handleChangeName = () => {
+        console.log(this.state.name)
+        this.handlerFocusOut()
+    }
+
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        })
+    }
+
     renderName = () => {
         if (this.state.isNameEdit) {
             return (
-                <TextField
-                    id="standard-name"
-                    label="Name"
-                    // className={classes.textField}
-                    value={this.state.dictionary.name}
-                    // onChange={this.handleChange('name')}
-                    margin="normal"
-                />
+                <div>
+                    <TextField
+                        id="standard-name"
+                        label="Name"
+                        autoFocus
+                        defaultValue={this.state.dictionary.name}
+                        autoComplete="off"
+                        onChange={this.handleChange('name')}
+                        margin="normal"
+                    />
+                    <IconButton onClick={this.handleChangeName}>
+                        <CheckIcon />
+                    </IconButton>
+                    <IconButton onClick={this.handlerFocusOut}>
+                        <HighlightOffIcon />
+                    </IconButton>
+                </div>
             )
         }
-        return this.state.dictionary.name
+        return (
+            <div>
+                {this.state.dictionary.name}
+                <IconButton onClick={this.handleClickOnName}>
+                    <EditIcon />
+                </IconButton>
+            </div>
+        )
     }
 
     render() {
@@ -51,7 +86,6 @@ class DictionaryDetail extends Component {
                         style={{
                             backgroundColor: 'red',
                         }}
-                        onClick={this.handleClickOnName}
                     >
                         {this.renderName()}
                     </div>

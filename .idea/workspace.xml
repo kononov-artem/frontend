@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e6c1bad-e96e-49f7-bccb-0d0eaae1137c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/dictionaries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/dictionaries.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +34,7 @@
           <entry key="dummy" value="6" />
           <entry key="env" value="17" />
           <entry key="gitignore" value="19" />
-          <entry key="js" value="7418" />
+          <entry key="js" value="7643" />
           <entry key="json" value="4" />
           <entry key="vmoptions" value="4" />
         </counts>
@@ -43,7 +44,7 @@
           <entry key=".env file" value="17" />
           <entry key="CSS" value="449" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="7429" />
+          <entry key="JavaScript" value="7654" />
           <entry key="PLAIN_TEXT" value="29" />
         </counts>
       </usages-collector>
@@ -53,7 +54,7 @@
           <entry key="env" value="2" />
           <entry key="html" value="1" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="72" />
+          <entry key="js" value="73" />
           <entry key="json" value="1" />
           <entry key="md" value="1" />
           <entry key="prettierrc" value="1" />
@@ -70,7 +71,7 @@
           <entry key="HTML" value="1" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="72" />
+          <entry key="JavaScript" value="73" />
           <entry key="Markdown" value="1" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="1" />
@@ -99,11 +100,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="628">
-              <caret line="53" column="55" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
+            <state relative-caret-position="-74">
+              <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/store/actions/dictionaries.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -139,6 +149,7 @@
       <find>r</find>
       <find>ga-redirect</find>
       <find>link</find>
+      <find>IconButton</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/components/Home/Home.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/Dictionaries/Dictionaries.js" />
-        <option value="$PROJECT_DIR$/src/store/actions/dictionaries.js" />
         <option value="$PROJECT_DIR$/src/store/reducers/dictionaries.js" />
         <option value="$PROJECT_DIR$/src/components/SimpleBottomNavigation/SimpleBottomNavigation.js" />
         <option value="$PROJECT_DIR$/src/components/Test/Main.js" />
@@ -190,6 +200,7 @@
         <option value="$PROJECT_DIR$/src/store/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/store/actions/dictionaryDetail.js" />
         <option value="$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js" />
+        <option value="$PROJECT_DIR$/src/store/actions/dictionaries.js" />
       </list>
     </option>
   </component>
@@ -402,6 +413,18 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js</url>
+          <line>24</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -659,13 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/dictionaries.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/http.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -731,8 +747,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DictionaryDetail/DictionaryDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="53" column="55" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
+        <state relative-caret-position="-74">
+          <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/dictionaries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
         </state>
       </provider>
     </entry>

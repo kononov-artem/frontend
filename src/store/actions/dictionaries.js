@@ -1,8 +1,8 @@
 import { BaseRequestAction } from 'store/actions/base'
 import { API_URL } from '../../constants'
 
-export const DICTIONARIES_REQUEST = 'dictionaries/SIGNIN_REQUEST'
-export const DICTIONARIES_SUCCESS = 'dictionaries/SIGNIN_SUCCESS'
+export const DICTIONARIES_REQUEST = 'dictionaries/DICTIONARIES_REQUEST'
+export const DICTIONARIES_SUCCESS = 'dictionaries/DICTIONARIES_SUCCESS'
 
 export class GetDictionariesAction extends BaseRequestAction {
     _getURL = () => {
