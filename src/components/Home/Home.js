@@ -64,8 +64,8 @@ class Home extends Component {
                                     }}
                                 >
                                     <CardWithContent
-                                        redirectTo={urls.CONSTRUCTOR}
-                                        title="Constructor"
+                                        redirectTo={urls.SNAKE}
+                                        title="Snake"
                                         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, quasi."
                                     />
                                 </div>
