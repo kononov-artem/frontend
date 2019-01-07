@@ -70,7 +70,8 @@ async function processFetchResponse(resp, url, requestParams) {
         errorMessage = ''
     }
     if (resp.status === 401) {
-        const currentLocation = window.location.href
+        errorMessage = 'Forbidden'
+        // const currentLocation = window.location.href
         // window.location = '' + currentLocation
     } else if (resp.status >= 400 && resp.status < 500) {
         errorMessage = await resp.text()

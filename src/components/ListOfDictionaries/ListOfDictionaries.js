@@ -10,6 +10,8 @@ import IconButton from '@material-ui/core/IconButton'
 import CommentIcon from '@material-ui/icons/Comment'
 import { connect } from 'react-redux'
 import { GetDictionariesAction } from 'store/actions/dictionaries'
+import { httpRequest } from '../../http'
+import { API_URL } from '../../constants'
 
 const styles = theme => ({
     root: {
@@ -30,6 +32,21 @@ class ListOfDictionaries extends React.Component {
         dictionaries: [],
     }
 
+    doActiveDictionaries = arr => {
+        //TODO: вынести в отдельную функцию обновления словаря
+        let index = Number(arr[0])
+        let dictionary_id = this.state.dictionaries[index].id
+        let data = {
+            data: [
+                {
+                    id: dictionary_id,
+                    is_active: this.state.checked.indexOf(index) === -1
+                },
+            ],
+        }
+        httpRequest(`${API_URL}dictionaries/update/`, 'POST', {}, data)
+    }
+
     handleToggle = value => () => {
         const { checked } = this.state
         const currentIndex = checked.indexOf(value)
@@ -40,16 +57,48 @@ class ListOfDictionaries extends React.Component {
         } else {
             newChecked.splice(currentIndex, 1)
         }
-
+        this.doActiveDictionaries(this.arr_diff(newChecked, checked))
         this.setState({
             checked: newChecked,
         })
     }
 
+    arr_diff(a1, a2) {
+        var a = [],
+            diff = []
+
+        for (let i = 0; i < a1.length; i++) {
+            a[a1[i]] = true
+        }
+
+        for (let i = 0; i < a2.length; i++) {
+            if (a[a2[i]]) {
+                delete a[a2[i]]
+            } else {
+                a[a2[i]] = true
+            }
+        }
+
+        for (var k in a) {
+            diff.push(k)
+        }
+
+        return diff
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.dictionaries !== this.props.dictionaries) {
-            // console.log(nextProps.dictionaries.dictionaries)
-            this.setState({ dictionaries: nextProps.dictionaries })
+            let dictionaries = nextProps.dictionaries
+            let checked = []
+            dictionaries.map((dictionary, index) => {
+                if (dictionary.is_active) {
+                    checked.push(index)
+                }
+            })
+            this.setState({
+                dictionaries: dictionaries,
+                checked: checked,
+            })
         }
     }
 
@@ -67,7 +116,7 @@ class ListOfDictionaries extends React.Component {
                         onClick={this.handleToggle(index)}
                     >
                         <Checkbox
-                            checked={value.is_active}
+                            checked={this.state.checked.indexOf(index) !== -1}
                             tabIndex={-1}
                             disableRipple
                         />
