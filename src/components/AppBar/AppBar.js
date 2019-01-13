@@ -7,9 +7,16 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import ExitToApp from '@material-ui/icons/ExitToApp'
+import PanoramaFishEye from '@material-ui/icons/PanoramaFishEye'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { CheckPermissionAction } from 'store/actions/checkPermission'
+import { GetUsersAction } from 'store/actions/getUsers'
+import { GetTokenByUserAction } from 'store/actions/getTokenByUser'
+import SimpleDialogWrapped from 'components/UserSelectionMenu/UserSelectionMenu'
 
 const styles = {
     root: {
@@ -29,6 +36,41 @@ class MenuAppBar extends React.Component {
         auth: true,
         anchorEl: null,
         logout: false,
+        isSuperUser: false,
+        isShowUserSelectionMenu: false,
+        users: [],
+    }
+
+    componentWillMount() {
+        if (!this.props.permission) {
+            this.props.checkPermission()
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.permission !== nextProps.permission) {
+            if (nextProps.permission === 'superuser') {
+                this.setState({ isSuperUser: true })
+            }
+        }
+        if (this.props.users !== nextProps.users) {
+            let users = nextProps.users.map(user => {
+                return user.username
+            })
+            this.setState({ users: users })
+        }
+        if (this.props.userToken !== nextProps.userToken) {
+            localStorage.setItem('userToken', nextProps.userToken)
+            window.location.reload()
+        }
+    }
+
+    handleCloseUsersMenu = value => {
+        if (value !== this.state.selectedValue) {
+            console.log({ username: value })
+            this.props.getTokenByUser({ username: value })
+        }
+        this.setState({ selectedValue: value, isShowUserSelectionMenu: false })
     }
 
     handleChange = event => {
@@ -47,6 +89,27 @@ class MenuAppBar extends React.Component {
         this.setState({ logout: true })
     }
 
+    handleLoginAsUser = () => {
+        this.props.getUsers()
+        this.setState({ isShowUserSelectionMenu: true })
+        this.handleClose()
+    }
+
+    logout = () => {
+        localStorage.removeItem('userToken')
+        window.location.reload()
+    }
+
+    isViewAsUser = () => {
+        return localStorage.getItem('userToken')
+    }
+
+    renderAdminMenu() {
+        if (this.state.isSuperUser) {
+            return <MenuItem onClick={this.handleLoginAsUser}>Login as user</MenuItem>
+        }
+    }
+
     render() {
         const { classes } = this.props
         const { auth, anchorEl } = this.state
@@ -56,9 +119,12 @@ class MenuAppBar extends React.Component {
             <div className={classes.root}>
                 {this.state.logout ? <Redirect to="/logout" /> : null}
 
-                <AppBar position="static" style={{
-                    backgroundColor: '#37434f'
-                }}>
+                <AppBar
+                    position="static"
+                    style={{
+                        backgroundColor: '#37434f',
+                    }}
+                >
                     <Toolbar>
                         <IconButton
                             className={classes.menuButton}
@@ -72,6 +138,17 @@ class MenuAppBar extends React.Component {
                         </Typography>
                         {auth && (
                             <div>
+                                {this.isViewAsUser() ? (
+                                    <IconButton
+                                        aria-owns={open ? 'menu-appbar' : undefined}
+                                        aria-haspopup="true"
+                                        onClick={this.logout}
+                                        color="inherit"
+                                    >
+                                        <ExitToApp />
+                                    </IconButton>
+                                ) : null}
+
                                 <IconButton
                                     aria-owns={open ? 'menu-appbar' : undefined}
                                     aria-haspopup="true"
@@ -97,11 +174,18 @@ class MenuAppBar extends React.Component {
                                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
                                     <MenuItem onClick={this.handleLogout}>Log out</MenuItem>
+                                    {this.renderAdminMenu()}
                                 </Menu>
                             </div>
                         )}
                     </Toolbar>
                 </AppBar>
+                <SimpleDialogWrapped
+                    selectedValue={this.state.selectedValue}
+                    open={this.state.isShowUserSelectionMenu}
+                    onClose={this.handleCloseUsersMenu}
+                    users={this.state.users}
+                />
             </div>
         )
     }
@@ -111,4 +195,23 @@ MenuAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(MenuAppBar)
+export const mapStateToProps = store => {
+    return {
+        permission: store.checkPermission.permission
+            ? store.checkPermission.permission.permission
+            : null,
+        users: store.getUsers.users ? store.getUsers.users.results : null,
+        userToken: store.getTokenByUser.userToken ? store.getTokenByUser.userToken.token : null,
+    }
+}
+
+const mapDispatchToProps = {
+    checkPermission: () => new CheckPermissionAction().makeRequest({}, {}, {}, 'GET'),
+    getUsers: () => new GetUsersAction().makeRequest({}, {}, {}, 'GET'),
+    getTokenByUser: data => new GetTokenByUserAction().makeRequest({}, {}, { data }, 'POST'),
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(MenuAppBar))

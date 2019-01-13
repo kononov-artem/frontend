@@ -26,10 +26,13 @@ export function getURlParams(params = {}) {
 
 export function httpRequest(url, method = 'POST', params = {}, data = {}) {
     let token = localStorage.getItem('token')
+    let userToken = localStorage.getItem('userToken')
     let headers = {
         'Content-Type': 'application/json',
     }
-    if (token) {
+    if (userToken) {
+        headers['Authorization'] = `Token ${userToken}`
+    } else if (token) {
         headers['Authorization'] = `Token ${token}`
     }
 
