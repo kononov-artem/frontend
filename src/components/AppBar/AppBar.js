@@ -8,12 +8,12 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ExitToApp from '@material-ui/icons/ExitToApp'
-import PanoramaFishEye from '@material-ui/icons/PanoramaFishEye'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { CheckPermissionAction } from 'store/actions/checkPermission'
+import { GetMyInformationAction } from 'store/actions/getMyInformation'
 import { GetUsersAction } from 'store/actions/getUsers'
 import { GetTokenByUserAction } from 'store/actions/getTokenByUser'
 import SimpleDialogWrapped from 'components/UserSelectionMenu/UserSelectionMenu'
@@ -44,6 +44,7 @@ class MenuAppBar extends React.Component {
     componentWillMount() {
         if (!this.props.permission) {
             this.props.checkPermission()
+            this.props.getMyInformation()
         }
     }
 
@@ -62,6 +63,9 @@ class MenuAppBar extends React.Component {
         if (this.props.userToken !== nextProps.userToken) {
             localStorage.setItem('userToken', nextProps.userToken)
             window.location.reload()
+        }
+        if (this.props.myInformation !== nextProps.myInformation) {
+            this.setState({ username: nextProps.myInformation.username })
         }
     }
 
@@ -138,6 +142,7 @@ class MenuAppBar extends React.Component {
                         </Typography>
                         {auth && (
                             <div>
+                                {this.state.username}
                                 {this.isViewAsUser() ? (
                                     <IconButton
                                         aria-owns={open ? 'menu-appbar' : undefined}
@@ -173,8 +178,8 @@ class MenuAppBar extends React.Component {
                                 >
                                     <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                                     <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                                    <MenuItem onClick={this.handleLogout}>Log out</MenuItem>
                                     {this.renderAdminMenu()}
+                                    <MenuItem onClick={this.handleLogout}>Log out</MenuItem>
                                 </Menu>
                             </div>
                         )}
@@ -202,6 +207,7 @@ export const mapStateToProps = store => {
             : null,
         users: store.getUsers.users ? store.getUsers.users.results : null,
         userToken: store.getTokenByUser.userToken ? store.getTokenByUser.userToken.token : null,
+        myInformation: store.getMyInformation.myInformation,
     }
 }
 
@@ -209,6 +215,7 @@ const mapDispatchToProps = {
     checkPermission: () => new CheckPermissionAction().makeRequest({}, {}, {}, 'GET'),
     getUsers: () => new GetUsersAction().makeRequest({}, {}, {}, 'GET'),
     getTokenByUser: data => new GetTokenByUserAction().makeRequest({}, {}, { data }, 'POST'),
+    getMyInformation: () => new GetMyInformationAction().makeRequest({}, {}, {}, 'GET'),
 }
 
 export default connect(

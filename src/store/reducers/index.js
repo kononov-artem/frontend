@@ -6,6 +6,7 @@ import dictionaryDetail from './dictionaryDetail'
 import checkPermission from './checkPermission'
 import getUsers from './getUsers'
 import getTokenByUser from './getTokenByUser'
+import getMyInformation from './getMyInformation'
 
 export default history =>
     combineReducers({
@@ -15,5 +16,6 @@ export default history =>
         checkPermission,
         getUsers,
         getTokenByUser,
+        getMyInformation,
         router: connectRouter(history),
     })
