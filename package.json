@@ -13,7 +13,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "merge": "^1.2.1",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.13.1",
     "open-iconic": "^1.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
